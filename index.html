@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistani Decentralized Voting System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-vote-yea"></i>
+                <h1>Pakistani Voting System</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" id="homeBtn">
+                    <i class="fas fa-home"></i> Home
+                </button>
+                <button class="nav-btn" id="voteBtn">
+                    <i class="fas fa-vote-yea"></i> Vote
+                </button>
+                <button class="nav-btn" id="resultsBtn">
+                    <i class="fas fa-chart-bar"></i> Results
+                </button>
+            </nav>
+            <div class="wallet-status">
+                <i class="fas fa-user-check"></i>
+                <span>Voter Ready</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section class="content-section active" id="homeSection">
+                <div class="hero">
+                    <h2>Pakistan Electronic Voting System</h2>
+                    <p class="subtitle">Secure, Transparent Voting for Pakistani Citizens</p>
+
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <h3>CNIC Verification</h3>
+                            <p>Secure voting with CNIC validation for Pakistani citizens.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Secure & Private</h3>
+                            <p>Your vote is encrypted and remains completely anonymous.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Quick Process</h3>
+                            <p>Cast your vote in less than 2 minutes with our simple interface.</p>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" id="startVotingBtn">
+                        <i class="fas fa-play-circle"></i> Start Voting Now
+                    </button>
+                </div>
+            </section>
+
+            <!-- Voting Section -->
+            <section class="content-section" id="voteSection">
+                <div class="voting-container">
+                    <div class="section-header">
+                        <h2><i class="fas fa-ballot"></i> Cast Your Vote</h2>
+                        <p class="instruction">Enter your details and select a political party. All fields are required.
+                        </p>
+                    </div>
+
+                    <form id="votingForm">
+                        <!-- CNIC Input -->
+                        <div class="form-group">
+                            <label for="cnicInput" class="form-label">
+                                <i class="fas fa-id-card"></i> CNIC Number
+                            </label>
+                            <input type="text" id="cnicInput" placeholder="XXXXX-XXXXXXX-X" class="form-input" required>
+                            <small class="form-help">Format: 12345-6789012-3 (13 digits)</small>
+                        </div>
+
+                        <!-- Name Input -->
+                        <div class="form-group">
+                            <label for="nameInput" class="form-label">
+                                <i class="fas fa-user"></i> Full Name
+                            </label>
+                            <input type="text" id="nameInput" placeholder="Enter your full name" class="form-input"
+                                required>
+                        </div>
+
+                        <!-- Address Input -->
+                        <div class="form-group">
+                            <label for="addressInput" class="form-label">
+                                <i class="fas fa-map-marker-alt"></i> Complete Address
+                            </label>
+                            <textarea id="addressInput" rows="3" placeholder="House #, Street, City, Province"
+                                class="form-input" required></textarea>
+                        </div>
+
+                        <!-- Province Selection -->
+                        <div class="form-group">
+                            <label for="provinceSelect" class="form-label">
+                                <i class="fas fa-globe-asia"></i> Province
+                            </label>
+                            <select id="provinceSelect" class="form-input" required>
+                                <option value="">Select Your Province</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Sindh">Sindh</option>
+                                <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
+                                <option value="Balochistan">Balochistan</option>
+                                <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                                <option value="Islamabad">Islamabad Capital Territory</option>
+                            </select>
+                        </div>
+
+                        <!-- Political Parties -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-flag"></i> Select Political Party
+                            </label>
+                            <div class="parties-container" id="partiesContainer">
+                                <!-- Parties will be loaded by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Confirmation Checkbox -->
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="confirmVote" class="checkbox-input">
+                                <label for="confirmVote" class="checkbox-label">
+                                    <i class="fas fa-check-circle"></i> I confirm that my vote is final and all
+                                    information provided is correct.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="clearFormBtn">
+                                <i class="fas fa-eraser"></i> Clear Form
+                            </button>
+                            <button type="submit" class="btn-primary" id="submitVoteBtn" disabled>
+                                <i class="fas fa-paper-plane"></i> Submit Vote
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Your vote is encrypted and stored securely. You can verify your vote was counted in the
+                            Results section.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="content-section" id="resultsSection">
+                <div class="results-container">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-pie"></i> Live Election Results</h2>
+                        <p class="instruction">Real-time results from all cast votes</p>
+                    </div>
+
+                    <div class="results-summary">
+                        <div class="summary-card">
+                            <h3><i class="fas fa-users"></i> Total Votes</h3>
+                            <p class="summary-number" id="totalVotes">0</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3><i class="fas fa-id-card"></i> Unique Voters</h3>
+                            <p class="summary-number" id="uniqueVoters">0</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3><i class="fas fa-map"></i> Provinces</h3>
+                            <p class="summary-number" id="provincesCount">0</p>
+                        </div>
+                    </div>
+
+                    <div class="results-chart-container">
+                        <h3><i class="fas fa-poll"></i> Party-wise Results</h3>
+                        <div class="results-chart" id="resultsChart">
+                            <!-- Results will be loaded by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="results-table-container">
+                        <h3><i class="fas fa-table"></i> Recent Votes</h3>
+                        <div class="table-wrapper">
+                            <table id="recentVotesTable">
+                                <thead>
+                                    <tr>
+                                        <th>CNIC</th>
+                                        <th>Name</th>
+                                        <th>Province</th>
+                                        <th>Party</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Recent votes will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="refresh-section">
+                        <button class="btn-secondary" id="refreshResultsBtn">
+                            <i class="fas fa-sync-alt"></i> Refresh Results
+                        </button>
+                        <p class="note"><i class="fas fa-info-circle"></i> Data is stored in your browser's local
+                            storage</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-vote-yea"></i>
+                    <h3>Pakistani Voting System</h3>
+                    <p>Secure Electronic Voting Platform</p>
+                </div>
+
+                <div class="footer-links">
+                    <span><i class="fas fa-code"></i> HCI Voting Project</span>
+                    <span><i class="fas fa-database"></i> Local Storage</span>
+                    <span><i class="fas fa-mobile-alt"></i> Responsive Design</span>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pakistani Voting System . This is a frontend demonstration project for Human Computer
+                    Interaction Course.</p>
+                <p class="storage-note">Votes are stored in your browser's local storage. Clear browser data to reset
+                    all votes.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Vote Successfully Cast!</h2>
+                <button class="modal-close" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your vote has been recorded in the system.</p>
+                <div class="vote-summary">
+                    <p><strong>Voter:</strong> <span id="modalVoterName">N/A</span></p>
+                    <p><strong>Selected Party:</strong> <span id="modalSelectedParty">N/A</span></p>
+                    <p><strong>Vote ID:</strong> <span id="modalVoteId">VOTE-000000</span></p>
+                    <p><strong>Time:</strong> <span id="modalVoteTime">Just now</span></p>
+                </div>
+                <p class="modal-note">You can now cast another vote or view the results.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="castAnotherBtn">
+                    <i class="fas fa-redo"></i> Cast Another Vote
+                </button>
+                <button class="btn-primary" id="viewResultsModalBtn">
+                    <i class="fas fa-chart-bar"></i> View Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-container">
+            <!-- Voting Icon Animation -->
+            <div class="splash-icon">
+                <div class="vote-icon">
+                    <div class="ballot-box">
+                        <div class="slot"></div>
+                        <div class="base"></div>
+                    </div>
+                    <div class="vote-paper">
+                        <div class="check-mark">✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Title -->
+            <h1 class="splash-title">
+                <span class="title-text">Pakistan</span>
+                <span class="title-highlight">Voting</span>
+                <span class="title-text">System</span>
+            </h1>
+
+            <!-- Loading Progress -->
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <div class="loading-text" id="loadingText">Loading secure voting platform...</div>
+                <div class="loading-steps">
+                    <span class="step active">Initializing</span>
+                    <span class="step">Verifying</span>
+                    <span class="step">Securing</span>
+                    <span class="step">Ready</span>
+                </div>
+            </div>
+
+            <!-- Security Badge -->
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure • Encrypted • Private</span>
+            </div>
+
+            <!-- Loading Percentage -->
+            <div class="loading-percentage" id="loadingPercentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Rest of your existing HTML code -->
+    <div class="container">
+
+        <script src="script.js"></script>
+</body>
+
+</html>
